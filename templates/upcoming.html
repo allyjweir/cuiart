@@ -7,11 +7,21 @@
   <link href="{{ url_for('static', filename='upcoming.css') }}" rel="stylesheet">
 </head>
 
+<script>
+  function reverseRoute() {
+    var reversedStations = window.location.href.split("/").slice(-2).reverse();
+    document.location.href = "/upcoming/" + reversedStations[0] + "/" + reversedStations[1];
+  }
+</script>
+
 <body>
   <h1>Upcoming Journeys</h1>
 
   <p>From: {{ upcoming.from_name }} ({{ upcoming.from_crs }})</p>
   <p>To: {{ upcoming.to_name }} ({{ upcoming.to_crs }})</p>
+  <p>
+    <a onclick="reverseRoute()" href="#">Going the other direction?</a>
+  </p>
 
   <ul id="services-list">
     {% for service in upcoming.services %}
