@@ -1,0 +1,18 @@
+#services-list {
+  list-style-type: decimal-leading-zero;
+  padding-top: 1em;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.service:first-child {
+  border-top: 1px dashed;
+}
+
+.service {
+  border-bottom: 1px dashed;
+  padding-top: 1em;
+  white-space: nowrap;
+  padding-left: 2em;
+  padding-right: 2em;
+}

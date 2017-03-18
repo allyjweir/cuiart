@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <title>Cuiart (Journey) Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='upcoming.css') }}" rel="stylesheet">
+</head>
+
+<body>
+  <h1>Upcoming Journeys</h1>
+
+  <p>From: {{ upcoming.from_name }} ({{ upcoming.from_crs }})</p>
+  <p>To: {{ upcoming.to_name }} ({{ upcoming.to_crs }})</p>
+
+  <ul id="services-list">
+    {% for service in upcoming.services %}
+      <li class="service">
+        <span id="departure">
+          {% if service.etd != None %}
+            {{ service.etd }}
+          {% else %}
+            {{ service.std }}
+          {% endif %}
+          <small class="scheduled">(Scheduled: {{ service.std }})</small>
+        </span>
+
+        <p id="platform">
+            <strong>Platform: </strong>
+          {% if service.platform != None %}
+            {{ service.platform }}
+          {% else %}
+            <em>Unknown</em>
+          {% endif %}
+        </p>
+
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
