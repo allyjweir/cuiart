@@ -1,4 +1,4 @@
-#check-trains {
+button#check-trains {
     border: 1px solid;
     background: white;
     margin-top: 1em;
@@ -7,4 +7,10 @@
     font-family: monospace;
     font-size: large;
     font-weight: 600;
+    box-shadow: .3em .3em;
+    cursor: pointer;
+}
+
+button#check-trains:hover {
+    border: 2px solid;
 }
