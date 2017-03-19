@@ -15,7 +15,11 @@
 </script>
 
 <body>
-  <h1>Upcoming Journeys</h1>
+  <h1 id="header">
+    Upcoming Journeys
+    <br/>
+    <span class="header-detail">Last updated: {{ upcoming.generated_at.strftime('%Y-%m-%d %I:%M:%S %Z') }}</span>
+  </h1>
 
   <p>From: {{ upcoming.from_name }} ({{ upcoming.from_crs }})</p>
   <p>To: {{ upcoming.to_name }} ({{ upcoming.to_crs }})</p>
