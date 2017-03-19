@@ -20,7 +20,8 @@ class NationalRailAPI:
                     numRows = num_services,
                     _soapheaders={"AccessToken": self.api_key})
 
-        return { "from_name": result["locationName"],
+        return { "generated_at": result["generatedAt"],
+                 "from_name": result["locationName"],
                  "from_crs": result["crs"],
                  "to_name": result["filterLocationName"],
                  "to_crs": result["filtercrs"],
