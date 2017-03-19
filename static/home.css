@@ -1,0 +1,10 @@
+#check-trains {
+    border: 1px solid;
+    background: white;
+    margin-top: 1em;
+    width: 100%;
+    padding: 1em .5em 1em .5em;
+    font-family: monospace;
+    font-size: large;
+    font-weight: 600;
+}

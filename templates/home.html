@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="{{ url_for('static', filename='selectize-0.12.4/selectize.custom.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='home.css') }}" rel="stylesheet" />
+    <script src="{{ url_for('static', filename='jquery-3.2.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='selectize-0.12.4/selectize.min.js') }}"></script>
+  </head>
+
+  <script>
+    $(document).ready(function() {
+      ["#from-select", "#to-select"].forEach(function(selectId) {
+        $(selectId).selectize({
+          sortField: 'text',
+          closeOnSelect: true,
+          items: []
+        });
+      });
+    });
+  </script>
+
+  <body>
+    <h1>Journey Checker</h1>
+
+    <p>
+      You're waiting for a train
+      <br/>
+      <span class="pull-right">&nbsp;- Inception (2012)</span>
+    </p>
+
+    <form action="/lookup/upcoming" method="POST">
+      <div class="form-item">
+        <label for="from-select">Origin</label>
+        <select id="from-select" name="from-crs">
+          {% include "station_options_partial.html" %}
+        </select>
+      </div>
+
+      <div class="form-item">
+        <label for="to-select">Destination</label>
+        <select id="to-select" name="to-crs">
+          {% include "station_options_partial.html" %}
+        </select>
+      </div>
+
+      <button id="check-trains" 
+              class="pull-right" 
+              value="submit">Check Trains</button>
+    </form>
+
+  </body>
+</html>

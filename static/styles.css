@@ -1,4 +1,8 @@
 body {
   font-family: monospace;
-  padding-left: 1em;
+  padding: 1em;
+}
+
+.form-item {
+  padding: .8em .4em .8em .4em;
 }
