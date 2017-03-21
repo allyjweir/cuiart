@@ -4,21 +4,7 @@
     <link href="{{ url_for('static', filename='selectize-0.12.4/selectize.custom.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', filename='home.css') }}" rel="stylesheet" />
-    <script src="{{ url_for('static', filename='jquery-3.2.0.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='selectize-0.12.4/selectize.min.js') }}"></script>
   </head>
-
-  <script>
-    $(document).ready(function() {
-      ["#from-select", "#to-select"].forEach(function(selectId) {
-        $(selectId).selectize({
-          sortField: 'text',
-          closeOnSelect: true,
-          items: []
-        });
-      });
-    });
-  </script>
 
   <body>
     <h1>Journey Checker</h1>
@@ -29,7 +15,7 @@
       <span class="pull-right">&nbsp;- Inception (2012)</span>
     </p>
 
-    <form action="/lookup/upcoming" method="POST">
+    <form id="upcoming" action="/lookup/upcoming" method="POST">
       <div class="form-item">
         <label for="from-select">Origin</label>
         <select id="from-select" name="from-crs">
@@ -50,4 +36,8 @@
     </form>
 
   </body>
+
+  <script src="{{ url_for('static', filename='jquery-3.2.0.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='selectize-0.12.4/selectize.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='home.js') }}"></script>
 </html>
