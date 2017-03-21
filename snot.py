@@ -30,9 +30,10 @@ class NationalRailAPI:
                  "services": services }
 
     def _transform_services(self, trainServices):
+        import pdb; pdb.set_trace()
         if trainServices == None:
             return []
-        return [ Service(x) for x in trainServices["services"] ]
+        return [ Service(x) for x in trainServices["service"] ]
 
 class Service:
     '''Describes a train service within the National Rail network.'''
