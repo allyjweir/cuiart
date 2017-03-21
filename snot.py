@@ -20,12 +20,19 @@ class NationalRailAPI:
                     numRows = num_services,
                     _soapheaders={"AccessToken": self.api_key})
 
+        services = self._transform_services(result["trainServices"])
+
         return { "generated_at": result["generatedAt"],
                  "from_name": result["locationName"],
                  "from_crs": result["crs"],
                  "to_name": result["filterLocationName"],
                  "to_crs": result["filtercrs"],
-                 "services": [ Service(x) for x in result["trainServices"]["service"] ] }
+                 "services": services }
+
+    def _transform_services(self, trainServices):
+        if trainServices == None:
+            return []
+        return [ Service(x) for x in trainServices["services"] ]
 
 class Service:
     '''Describes a train service within the National Rail network.'''
