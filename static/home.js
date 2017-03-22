@@ -7,9 +7,4 @@ $(document).ready(function() {
             items: []
         });
     });
-
-    $('#upcoming').on('submit', function (e) {
-        console.log('INTERCEPT!');
-        alert('PLDA');
-    });
 });
