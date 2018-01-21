@@ -3,6 +3,8 @@ import zeep
 
 # Documentation for their original SOAP API can be found here:
 # https://lite.realtime.nationalrail.co.uk/OpenLDBWS/
+
+
 class NationalRailAPI:
     '''Wrapper class to access the National Rail's realtime SOAP API.'''
 
@@ -12,27 +14,28 @@ class NationalRailAPI:
         self.api_key = key
         self.client = zeep.Client(self.wsdl_url)
 
-    def get_next_trains(self, from_station, to_station, num_services = 10):
+    def get_next_trains(self, from_station, to_station, num_services=10):
         '''
         Gets next 10 trains that cover the requested route'''
         result = self.client.service.GetDepartureBoard(crs=from_station,
-                    filterCrs = to_station,
-                    numRows = num_services,
-                    _soapheaders={"AccessToken": self.api_key})
+                                                       filterCrs=to_station,
+                                                       numRows=num_services,
+                                                       _soapheaders={"AccessToken": self.api_key})
 
         services = self._transform_services(result["trainServices"])
 
-        return { "generated_at": result["generatedAt"],
-                 "from_name": result["locationName"],
-                 "from_crs": result["crs"],
-                 "to_name": result["filterLocationName"],
-                 "to_crs": result["filtercrs"],
-                 "services": services }
+        return {"generated_at": result["generatedAt"],
+                "from_name": result["locationName"],
+                "from_crs": result["crs"],
+                "to_name": result["filterLocationName"],
+                "to_crs": result["filtercrs"],
+                "services": services}
 
     def _transform_services(self, trainServices):
-        if trainServices == None:
+        if trainServices is None:
             return []
-        return [ Service(x) for x in trainServices["service"] ]
+        return [Service(x) for x in trainServices["service"]]
+
 
 class Service:
     '''Describes a train service within the National Rail network.'''
@@ -49,12 +52,12 @@ class Service:
         self.platform = api_object["platform"]
         self.operator = api_object["operator"]
         self.train_length = api_object["length"]  # Number of carraiges
-        self.detach_front = api_object["detachFront"]  # Does the train detatch and leave from front of platform
+        # Does the train detatch and leave from front of platform
+        self.detach_front = api_object["detachFront"]
         self.cancel_reason = api_object["cancelReason"]
         self.delay_reason = api_object["delayReason"]
         self.origin = Station(api_object["origin"]["location"][0])
         self.destination = Station(api_object["destination"]["location"][0])
-
 
 
 class Station:
